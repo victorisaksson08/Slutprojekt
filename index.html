@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Progress Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Gym Progress Tracker</h1>
+    <button id="themeBtn">🌙</button>
+  </header>
+  
+  <div class="card big-card">
+  <h2>Current Stats</h2>
+  <p>Weight: <span id="weightValue">77</span> kg</p>
+  <p>Goal Weight: <span id="goalWeightValue">82</span> kg</p>
+  <p>BMI: <span id="bmiValue">24</span></p>
+  <p>Latest PR: <span id="prValue">Bench 110 kg</span></p>
+
+  <button class="add-btn" id="editStatsBtn">Edit Stats</button>
+</div>
+    
+
+  <section class="stats-grid">
+    <div class="card">
+      <h3>Strength</h3>
+      <p>Bench: 140 kg</p>
+      <p>Squat: 160 kg</p>
+      <p>Deadlift: 220 kg</p>
+    </div>
+
+    <div class="card">
+      <h3>Body Weight</h3>
+      <p>Current: 88 kg</p>
+      <p>BMI: 26</p>
+    </div>
+
+    <div class="card">
+      <h3>Goals</h3>
+      <p>Bench Goal: <span id="goalBenchValue">120</span> kg</p>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="workout-log">
+  <div class="card">
+    <h2>Workout Log</h2>
+
+    <div id="workoutList">
+
+      <div class="workout-header">
+        <p>Date</p>
+        <p>Exercise</p>
+        <p>Weight</p>
+        <p>Reps</p>
+      </div>
+
+      <div class="workout-row">
+        <p>22/4</p>
+        <p>Bench Press</p>
+        <p>120 kg</p>
+        <p>5</p>
+      </div>
+
+      <div class="workout-row">
+        <p>21/4</p>
+        <p>Deadlift</p>
+        <p>160 kg</p>
+        <p>4</p>
+      </div>
+
+    </div>
+
+    <button class="add-btn" id="addWorkoutBtn">+ Add Workout</button>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
