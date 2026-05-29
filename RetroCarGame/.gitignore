@@ -1,0 +1,10 @@
+## Visual Studio 2022
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
