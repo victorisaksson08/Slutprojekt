@@ -52,12 +52,22 @@ function addWorkoutToList(workout) {
   const row = document.createElement("div");
   row.classList.add("workout-row");
 
-  row.innerHTML = `
-    <p>${workout.date}</p>
-    <p>${workout.exercise}</p>
-    <p>${workout.weight} kg</p>
-    <p>${workout.reps}</p>
-  `;
+  const dateCell = document.createElement("p");
+  dateCell.textContent = workout.date;
+
+  const exerciseCell = document.createElement("p");
+  exerciseCell.textContent = workout.exercise;
+
+  const weightCell = document.createElement("p");
+  weightCell.textContent = workout.weight + " kg";
+
+  const repsCell = document.createElement("p");
+  repsCell.textContent = workout.reps;
+
+  row.appendChild(dateCell);
+  row.appendChild(exerciseCell);
+  row.appendChild(weightCell);
+  row.appendChild(repsCell);
 
   workoutList.appendChild(row);
 }
@@ -71,33 +81,62 @@ function loadWorkouts() {
 addWorkoutBtn.addEventListener("click", () => {
   const date = prompt("Enter date:");
   const exercise = prompt("Enter exercise:");
-  const weight = prompt("Enter weight:");
-  const reps = prompt("Enter reps:");
+  const weightInput = prompt("Enter weight:");
+  const repsInput = prompt("Enter reps:");
 
-  if (date && exercise && weight && reps) {
-    const workout = { date, exercise, weight, reps };
+  if (!date || !exercise || !weightInput || !repsInput) return;
 
-    workouts.push(workout);
-    saveWorkouts();
-    addWorkoutToList(workout);
+  const weight = parseFloat(weightInput);
+  const reps = parseInt(repsInput, 10);
 
-    if (exercise.toLowerCase() === "bench press") {
-      if (parseFloat(weight) > stats.currentBench) {
-        stats.currentBench = parseFloat(weight);
-        stats.latestPR = "Bench " + weight + " kg";
-        saveStats();
-        displayStats();
-        updateProgress();
-      }
+  if (isNaN(weight) || weight <= 0) {
+    alert("Weight must be a positive number.");
+    return;
+  }
+  if (isNaN(reps) || reps <= 0) {
+    alert("Reps must be a positive whole number.");
+    return;
+  }
+
+  const workout = { date, exercise, weight, reps };
+
+  workouts.push(workout);
+  saveWorkouts();
+  addWorkoutToList(workout);
+
+  if (exercise.toLowerCase() === "bench press") {
+    if (weight > stats.currentBench) {
+      stats.currentBench = weight;
+      stats.latestPR = "Bench " + weight + " kg";
+      saveStats();
+      displayStats();
+      updateProgress();
     }
   }
 });
 
 editStatsBtn.addEventListener("click", () => {
-  stats.weight = prompt("Current weight:", stats.weight) || stats.weight;
-  stats.goalWeight = prompt("Goal weight:", stats.goalWeight) || stats.goalWeight;
-  stats.bmi = prompt("BMI:", stats.bmi) || stats.bmi;
-  stats.goalBench = prompt("Bench goal:", stats.goalBench) || stats.goalBench;
+  const weightInput = prompt("Current weight:", stats.weight);
+  const goalWeightInput = prompt("Goal weight:", stats.goalWeight);
+  const bmiInput = prompt("BMI:", stats.bmi);
+  const goalBenchInput = prompt("Bench goal:", stats.goalBench);
+
+  if (weightInput !== null && weightInput !== "") {
+    const v = parseFloat(weightInput);
+    if (!isNaN(v) && v > 0) stats.weight = v;
+  }
+  if (goalWeightInput !== null && goalWeightInput !== "") {
+    const v = parseFloat(goalWeightInput);
+    if (!isNaN(v) && v > 0) stats.goalWeight = v;
+  }
+  if (bmiInput !== null && bmiInput !== "") {
+    const v = parseFloat(bmiInput);
+    if (!isNaN(v) && v > 0) stats.bmi = v;
+  }
+  if (goalBenchInput !== null && goalBenchInput !== "") {
+    const v = parseFloat(goalBenchInput);
+    if (!isNaN(v) && v > 0) stats.goalBench = v;
+  }
 
   saveStats();
   displayStats();
