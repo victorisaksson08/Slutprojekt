@@ -13,7 +13,7 @@ header {
 }
 
 h1 {
-  color: #4da3ff;
+  color: hsl(278, 100%, 65%);
 }
 
 .card {
@@ -45,7 +45,7 @@ h1 {
 .progress {
   width: 80%;
   height: 100%;
-  background: #4da3ff;
+  background: hsl(278, 100%, 65%);
 }
 
 .workout-log {
@@ -64,13 +64,13 @@ th, td {
 }
 
 th {
-  color: #4da3ff;
+  color: hsl(278, 100%, 65%);
 }
 
 .add-btn {
   margin-top: 20px;
   padding: 12px 20px;
-  background: #4da3ff;
+  background: hsl(278, 100%, 65%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -95,7 +95,7 @@ button {
 
 .workout-header p {
   font-weight: bold;
-  color: #4da3ff;
+  color: hsl(278, 100%, 65%);
 }
 
 .workout-row p {
